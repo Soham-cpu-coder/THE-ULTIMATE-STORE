@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Cricket Gloves</title>
+    <link rel="stylesheet" href="cricket-2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cricket.html">Cricket</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <!-- Added Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search products..." oninput="searchProducts()">
+        </div>
+    </header>
+    
+    <main>
+        <h1>Cricket Gloves</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="Cricket-bat.html"><button>Cricket Bats</button></a>
+                <a href="Cricket-ball.html"><button>Cricket Balls</button></a>
+                <a href="Cricket-Gloves.html"><button>Cricket Gloves</button></a>
+                <a href="Cricket-helmet.html"><button>Cricket Helmets</button></a>
+                <a href="Cricket-pads.html"><button>Cricket Pads</button></a>
+                <a href="Cricket-kit.html"><button>Cricket Kits</button></a>
+            </div>
+
+            <div class="product">
+                <img src="Images/GM-gloves.jpg" alt="GM Gloves">
+                <h2>GM Gloves</h2>
+                <p>$25</p>
+                <button class="add-to-cart" data-name="GM Gloves" data-price="25">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/A2-gloves.jpg" alt="A2 Gloves">
+                <h2>A2 Gloves</h2>
+                <p>$22</p>
+                <button class="add-to-cart" data-name="A2 Gloves" data-price="22">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/EM-gloves.jpg" alt="EM Gloves">
+                <h2>EM Gloves</h2>
+                <p>$28</p>
+                <button class="add-to-cart" data-name="EM Gloves" data-price="28">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/gloves.jpg" alt="Cricket Gloves">
+                <h2>Cricket Gloves</h2>
+                <p>$20</p>
+                <button class="add-to-cart" data-name="Cricket Gloves" data-price="20">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/gloves-2.jpg" alt="Cricket Gloves 2">
+                <h2>Cricket Gloves 2</h2>
+                <p>$23</p>
+                <button class="add-to-cart" data-name="Cricket Gloves 2" data-price="23">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/kookaburra-gloves.jpg" alt="Kookaburra Gloves">
+                <h2>Kookaburra Gloves</h2>
+                <p>$30</p>
+                <button class="add-to-cart" data-name="Kookaburra Gloves" data-price="30">Add to Cart</button>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+
+<script>
+    function searchProducts() {
+        let query = document.getElementById('search').value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(product => {
+            let productName = product.querySelector("h2").textContent.toLowerCase();
+            if (productName.includes(query)) {
+                product.style.display = "block"; // Show matching product
+            } else {
+                product.style.display = "none"; // Hide non-matching product
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function() {
+                let product = this.closest(".product");
+                let name = product.querySelector("h2").textContent;
+                let price = parseFloat(this.getAttribute("data-price"));
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let existingItem = cart.find(item => item.name === name);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(name + " added to cart!");
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball</title>
+    <link rel="stylesheet" href="basketball2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="basketball.html">Basketball</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search products..." oninput="searchProducts()">
+        </div>
+    </header>
+    
+    <main>
+        <h1>Basketball</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="basketball-ball.html"><button>Basketball</button></a>
+                <a href="basketball-hoop.html"><button>Basketball Hoops</button></a>
+                <a href="basketball-jersey.html"><button>Jerseys</button></a>
+                <a href="basketball-shoes.html"><button>Shoes</button></a>
+            </div>
+
+            <div class="product" data-name="Basketball Shoes">
+                <img src="Images/basketball-shoes.jpg" alt="Basketball Shoes">
+                <h2>Standard Basketball Shoes</h2>
+                <p>$60</p>
+                <button class="add-to-cart" data-price="60">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Nike Basketball Shoes">
+                <img src="Images/nike-shoes.jpg" alt="Nike Basketball Shoes">
+                <h2>Nike Basketball Shoes</h2>
+                <p>$120</p>
+                <button class="add-to-cart" data-price="120">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Red Nike Basketball Shoes">
+                <img src="Images/red-nike-shoes.jpg" alt="Red Nike Basketball Shoes">
+                <h2>Red Nike Basketball Shoes</h2>
+                <p>$130</p>
+                <button class="add-to-cart" data-price="130">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Jordan Basketball Shoes">
+                <img src="Images/jordon-shoe.jpg" alt="Jordan Basketball Shoes">
+                <h2>Jordan Basketball Shoes</h2>
+                <p>$150</p>
+                <button class="add-to-cart" data-price="150">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Jordan Basketball Shoes 2">
+                <img src="Images/jordon-shoe-2.jpg" alt="Jordan Basketball Shoes 2">
+                <h2>Jordan Basketball Shoes 2</h2>
+                <p>$160</p>
+                <button class="add-to-cart" data-price="160">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Jordan Basketball Shoes 3">
+                <img src="Images/jordon-shoe-3.jpg" alt="Jordan Basketball Shoes 3">
+                <h2>Jordan Basketball Shoes 3</h2>
+                <p>$170</p>
+                <button class="add-to-cart" data-price="170">Add to Cart</button>
+            </div>
+
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+
+<script>
+    function searchProducts() {
+        let query = document.getElementById('search').value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(product => {
+            let productName = product.getAttribute("data-name").toLowerCase();
+            if (productName.includes(query)) {
+                product.style.display = "block"; // Show matching product
+            } else {
+                product.style.display = "none"; // Hide non-matching product
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function() {
+                let product = this.closest(".product");
+                let name = product.getAttribute("data-name");
+                let price = parseFloat(this.getAttribute("data-price"));
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let existingItem = cart.find(item => item.name === name);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(name + " added to cart!");
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

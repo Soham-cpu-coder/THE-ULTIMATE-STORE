@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login - Sports Store</title>
+    <link rel="stylesheet" href="login-css.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <h1>Login</h1>
+        <form id="login-form">
+            <label for="email">Email:</label>
+            <input type="email" id="email" required>
+
+            <label for="password">Password:</label>
+            <input type="password" id="password" required>
+
+            <button type="submit">Login</button>
+        </form>
+        <p id="login-message"></p>
+
+        <p>Don't have an account? <a href="register.html">Register here</a></p>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+    
+<script>
+document.getElementById("login-form").addEventListener("submit", function(event) {
+    event.preventDefault();
+
+    const email = document.getElementById("email").value;
+    const password = document.getElementById("password").value;
+
+    fetch("http://localhost:3000/login", {
+        method: "POST",
+        headers: {
+            "Content-Type": "application/json"
+        },
+        body: JSON.stringify({ email, password })
+    })
+    .then(res => {
+        if (!res.ok) throw new Error("Invalid email or password.");
+        return res.json();
+    })
+    .then(data => {
+        document.getElementById("login-message").innerText = data.message;
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1000);
+    })
+    .catch(err => {
+        document.getElementById("login-message").innerText = err.message;
+    });
+});
+</script>
+
+
+</body>
+</html>

@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Swimming Equipment</title>
+    <link rel="stylesheet" href="swim2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for swimming equipment...">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+    </header>
+    
+    <main>
+        <h1>Swimming Equipment</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="swim-suit.html"><button>Swimming Suit</button></a>
+                <a href="swim-goggles.html"><button>Swimming Goggles</button></a>
+                <a href="swim-cap.html"><button>Swimming Caps</button></a>
+                <a href="swim-fins.html"><button>Fins</button></a>	
+            </div>
+
+            <div class="product" data-name="Beginner Swimming Fins">
+                <img src="Images/fins.webp" alt="Swimming Fins Model 1">
+                <h2>Beginner Swimming Fins</h2>
+                <p>$25</p>
+                <button class="add-to-cart" data-name="Beginner Swimming Fins" data-price="25">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Short Blade Swimming Fins">
+                <img src="Images/fins-2.webp" alt="Swimming Fins Model 2">
+                <h2>Short Blade Swimming Fins</h2>
+                <p>$30</p>
+                <button class="add-to-cart" data-name="Short Blade Swimming Fins" data-price="30">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Professional Swimming Fins">
+                <img src="Images/fins-3.webp" alt="Swimming Fins Model 3">
+                <h2>Professional Swimming Fins</h2>
+                <p>$40</p>
+                <button class="add-to-cart" data-name="Professional Swimming Fins" data-price="40">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Long Blade Swimming Fins">
+                <img src="Images/fins-4.webp" alt="Swimming Fins Model 4">
+                <h2>Long Blade Swimming Fins</h2>
+                <p>$45</p>
+                <button class="add-to-cart" data-name="Long Blade Swimming Fins" data-price="45">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Adjustable Swimming Fins">
+                <img src="Images/fins-5.webp" alt="Swimming Fins Model 5">
+                <h2>Adjustable Swimming Fins</h2>
+                <p>$50</p>
+                <button class="add-to-cart" data-name="Adjustable Swimming Fins" data-price="50">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Kids Swimming Fins">
+                <img src="Images/fins-6.webp" alt="Swimming Fins Model 6">
+                <h2>Kids Swimming Fins</h2>
+                <p>$20</p>
+                <button class="add-to-cart" data-name="Kids Swimming Fins" data-price="20">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+    
+    <script>
+        function searchProducts() {
+            let query = document.getElementById('search').value.toLowerCase();
+            let products = document.querySelectorAll(".product");
+
+            products.forEach(product => {
+                let productName = product.querySelector("h2").textContent.toLowerCase(); // ✅ Search inside <h2>
+                if (productName.includes(query)) {
+                    product.style.display = "block"; // Show matching product
+                } else {
+                    product.style.display = "none"; // Hide non-matching product
+                }
+            });
+        }
+
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+            
+            // Convert price to number
+            price = parseFloat(price);
+
+            // Check if item already exists in the cart
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;  // Increase quantity
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(`${name} has been added to your cart!`);
+        }
+
+        // 🔹 Add event listeners to all "Add to Cart" buttons
+        document.addEventListener("DOMContentLoaded", function() {
+            let buttons = document.querySelectorAll(".add-to-cart");
+            buttons.forEach(button => {
+                button.addEventListener("click", function() {
+                    let name = this.getAttribute("data-name");
+                    let price = this.getAttribute("data-price");
+                    addToCart(name, price);
+                });
+            });
+        });
+    </script>
+
+</body>
+</html>

@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Football</title>
+    <link rel="stylesheet" href="cricket-2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="football.html">Football</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <!-- ✅ Added Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search products..." oninput="searchProducts()">
+        </div>
+    </header>
+    
+    <main>
+        <h1>Football</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="football-ball.html"><button>Football</button></a>
+                <a href="football-shoes.html"><button>Football Studs</button></a>
+                <a href="football-gloves.html"><button>Keeper Gloves</button></a>
+                <a href="football-jersey.html"><button>Jerseys</button></a>
+                <a href="football-shinpads.html"><button>Shinpads</button></a>
+                <a href="football-bibs.html"><button>Training Bibs</button></a>
+                <a href="football-cones.html"><button>Training Cones</button></a>
+                <a href="football-pump.html"><button>Pump</button></a>    
+            </div>
+
+            <div class="product">
+                <img src="Images/football.jpg" alt="Football">
+                <h2>Football</h2>
+                <p>$30</p>
+                <button class="add-to-cart" data-name="Football" data-price="30">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/football-2.jpg" alt="Football 2">
+                <h2>Premium Football</h2>
+                <p>$35</p>
+                <button class="add-to-cart" data-name="Premium Football" data-price="35">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/football-3.jpg" alt="Football 3">
+                <h2>Match Football</h2>
+                <p>$40</p>
+                <button class="add-to-cart" data-name="Match Football" data-price="40">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/football-4.jpg" alt="Football 4">
+                <h2>Training Football</h2>
+                <p>$25</p>
+                <button class="add-to-cart" data-name="Training Football" data-price="25">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/football-5.jpg" alt="Football 5">
+                <h2>FIFA Approved Football</h2>
+                <p>$50</p>
+                <button class="add-to-cart" data-name="FIFA Approved Football" data-price="50">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/football-6.jpg" alt="Football 6">
+                <h2>Street Football</h2>
+                <p>$20</p>
+                <button class="add-to-cart" data-name="Street Football" data-price="20">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+
+<script>
+    function searchProducts() {
+        let query = document.getElementById('search').value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(product => {
+            let productName = product.querySelector("h2").textContent.toLowerCase();
+            if (productName.includes(query)) {
+                product.style.display = "block"; // ✅ Show matching product
+            } else {
+                product.style.display = "none"; // ❌ Hide non-matching product
+            }
+        });
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function() {
+                let product = this.closest(".product");
+                let name = product.querySelector("h2").textContent;
+                let price = parseFloat(this.getAttribute("data-price"));
+
+                let cart = JSON.parse(localStorage.getItem('cart')) || [];
+                let existingItem = cart.find(item => item.name === name);
+
+                if (existingItem) {
+                    existingItem.quantity += 1;
+                } else {
+                    cart.push({ name, price, quantity: 1 });
+                }
+
+                localStorage.setItem('cart', JSON.stringify(cart));
+                alert(name + " added to cart!");
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

@@ -1,0 +1,208 @@
+/* Import Google Font */
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600&display=swap');
+
+/* General Styles */
+body {
+    font-family: 'Poppins', sans-serif;
+    background: #f3f7f3;
+    margin: 0;
+    padding: 0;
+}
+
+/* Header */
+header {
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    color: white;
+    padding: 15px 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+/* ✅ Fix: Add space between logo and nav */
+.logo {
+    font-size: 1.6rem;
+    font-weight: 600;
+    margin-right: 30px; /* ✅ Adds space between logo & nav */
+}
+
+/* Navigation */
+nav {
+    flex-grow: 1; /* ✅ Pushes the nav items to the right */
+}
+
+nav ul {
+    list-style: none;
+    padding: 0;
+    display: flex;
+    gap: 20px; /* ✅ Adds space between menu items */
+}
+
+nav ul li {
+    margin-right: 15px; /* ✅ Extra spacing for better alignment */
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    text-decoration: underline;
+}
+
+
+/* Search Bar */
+.search-container {
+    margin-left: auto;
+}
+
+.search-container input {
+    padding: 8px 12px;
+    font-size: 1rem;
+    border: none;
+    border-radius: 20px;
+    outline: none;
+    width: 180px;
+}
+
+/* Page Title */
+h1 {
+    text-align: center;
+    color: #2e7d32;
+    margin-top: 20px;
+    font-size: 2rem;
+}
+
+/* Categories Section */
+.categories {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 15px;
+    padding: 10px 0;
+    margin-bottom: 20px;
+}
+
+.categories a button {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 12px 18px;
+    border-radius: 25px;
+    cursor: pointer;
+    font-size: 1rem;
+    font-weight: 500;
+    transition: 0.3s;
+    min-width: 140px;
+}
+
+.categories a button:hover {
+    background: #1b5e20;
+}
+
+/* Product Grid */
+.product-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    justify-content: center;
+    align-items: center;
+    max-width: 1200px;
+    margin: auto;
+    padding: 20px;
+}
+
+/* Product Card */
+.product {
+    background: white;
+    border-radius: 12px;
+    padding: 15px;
+    text-align: center;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.15);
+    transition: transform 0.3s, box-shadow 0.3s;
+    overflow: hidden; /* Prevents layout breaking */
+    position: relative;
+}
+
+.product:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+/* Product Images */
+.product img {
+    width: 120px;
+    height: 120px;
+    object-fit: contain;
+    margin-bottom: 10px;
+    transition: transform 0.4s ease-in-out;
+}
+
+/* 🔥 NEW IMAGE HOVER EFFECT */
+.product:hover img {
+    transform: scale(1.5); /* ✅ Subtle zoom (1.5x) instead of 2x */
+}
+
+/* Product Name */
+.product h2 {
+    font-size: 1.2rem;
+    color: #333;
+    margin: 10px 0;
+}
+
+/* Product Price */
+.product p {
+    font-size: 1rem;
+    font-weight: bold;
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+/* Add to Cart Button */
+.add-to-cart {
+    background: #2e7d32;
+    color: white;
+    border: none;
+    padding: 10px 15px;
+    border-radius: 20px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: 0.3s;
+}
+
+.add-to-cart:hover {
+    background: #1b5e20;
+}
+
+/* Footer */
+footer {
+    background: linear-gradient(135deg, #2e7d32, #1b5e20);
+    color: white;
+    text-align: center;
+    padding: 15px 0;
+    margin-top: 20px;
+}
+
+/* Responsive Design */
+@media (max-width: 900px) {
+    .categories {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+
+    .product-list {
+        grid-template-columns: repeat(2, 1fr);
+    }
+}
+
+@media (max-width: 600px) {
+    .product-list {
+        grid-template-columns: repeat(1, 1fr);
+    }
+}

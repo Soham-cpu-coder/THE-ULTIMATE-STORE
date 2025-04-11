@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Basketball</title>
+    <link rel="stylesheet" href="basketball2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="basketball.html">Basketball</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search products..." oninput="searchProducts()">
+        </div>
+    </header>
+    
+    <main>
+        <h1>Basketball</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="basketball-ball.html"><button>Basketball</button></a>
+                <a href="basketball-hoop.html"><button>Basketball Hoops</button></a>
+                <a href="basketball-jersey.html"><button>Jerseys</button></a>
+                <a href="basketball-shoes.html"><button>Shoes</button></a>
+            </div>
+
+            <div class="product" data-name="Standard Basketball" data-price="30">
+                <img src="Images/basketball.jpg" alt="Basketball">
+                <h2>Standard Basketball</h2>
+                <p>$30</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+
+            <div class="product" data-name="Premium Basketball" data-price="50">
+                <img src="Images/basketball-2.jpg" alt="Premium Basketball">
+                <h2>Premium Basketball</h2>
+                <p>$50</p>
+                <button class="add-to-cart">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+
+<script>
+    function searchProducts() {
+        let query = document.getElementById('search').value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(product => {
+            let productName = product.getAttribute("data-name").toLowerCase();
+            if (productName.includes(query)) {
+                product.style.display = "block"; // Show matching product
+            } else {
+                product.style.display = "none"; // Hide non-matching product
+            }
+        });
+    }
+
+    function addToCart(name, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        let existingItem = cart.find(item => item.name === name);
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(name + " added to cart!");
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function () {
+                let product = this.closest(".product");
+                let name = product.getAttribute("data-name");
+                let price = parseFloat(product.getAttribute("data-price"));
+                addToCart(name, price);
+            });
+        });
+    });
+</script>
+
+</body>
+</html>

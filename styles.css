@@ -1,0 +1,187 @@
+/* General Styling */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f5f5f5;
+}
+
+/* Header */
+header {
+    background: linear-gradient(to right, #008000, #004d00);
+    color: white;
+    padding: 15px 5%;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    position: fixed;
+    width: 90%;
+    top: 0;
+    z-index: 1000;
+}
+
+.logo {
+    font-size: 24px;
+    font-weight: bold;
+}
+
+/* Navigation */
+nav ul {
+    list-style-type: none;
+    display: flex;
+    padding: 0;
+}
+
+nav ul li {
+    margin: 0 15px;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    font-weight: bold;
+    transition: color 0.3s;
+}
+
+nav ul li a:hover {
+    color: #ff9900;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    align-items: center;
+}
+
+.search-bar input {
+    padding: 8px;
+    font-size: 16px;
+    border: none;
+    border-radius: 4px;
+    width: 250px;
+}
+
+.search-bar button {
+    padding: 8px 15px;
+    margin-left: 5px;
+    background-color: #ff9900;
+    border: none;
+    cursor: pointer;
+    font-weight: bold;
+    transition: background 0.3s;
+}
+
+.search-bar button:hover {
+    background-color: #e68a00;
+}
+
+/* Hero Section - Background Slideshow */
+@keyframes backgroundSlideshow {
+    0% { background-image: url('Images/background.webp'); }
+    16.66% { background-image: url('Images/background2.webp'); }
+    33.33% { background-image: url('Images/background3.webp'); }
+    50% { background-image: url('Images/background4.webp'); }
+    66.66% { background-image: url('Images/background5.webp'); }
+    83.33% { background-image: url('Images/background6.webp'); }
+    100% { background-image: url('Images/background.webp'); } /* Loop back */
+}
+
+.hero {
+    width: 100%;
+    height: 100vh; /* Fullscreen */
+    display: flex;
+    flex-direction: column; /* Stack elements vertically */
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    color: white;
+    font-size: 2rem;
+    font-weight: bold;
+    position: relative;
+    
+    /* Background Slideshow */
+    background-size: cover;
+    background-position: center;
+    animation: backgroundSlideshow 30s infinite;
+    
+    /* Dark overlay for readability */
+    background-blend-mode: darken;
+    background-color: rgba(0, 0, 0, 0.5);
+}
+
+/* Hero Text Styling */
+.hero h1 {
+    font-size: 48px; /* Bigger for main heading */
+    margin-bottom: 10px; /* Space between heading and paragraph */
+}
+
+.hero p {
+    font-size: 24px; /* Smaller than heading */
+    margin: 0; /* Remove extra margins */
+}
+
+/* Category Container (Horizontal Scroll) */
+.category-container {
+    display: flex;
+    overflow-x: auto;
+    padding: 20px;
+    white-space: nowrap;
+    gap: 20px;
+    scroll-behavior: smooth;
+    margin: 80px 5%;
+}
+
+.category-card {
+    flex: 0 0 auto;
+    width: 250px;
+    text-align: center;
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.category-card:hover {
+    transform: scale(1.05);
+    box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.3);
+}
+
+.category-card img {
+    width: 100%;
+    height: 180px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Product Page Grid */
+.product-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+    gap: 20px;
+    padding: 40px 5%;
+}
+
+.product-card {
+    background: white;
+    padding: 15px;
+    border-radius: 8px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    text-align: center;
+}
+
+.product-card img {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 15px;
+    background: linear-gradient(to right, #008000, #004d00);
+    color: white;
+    margin-top: 20px;
+}

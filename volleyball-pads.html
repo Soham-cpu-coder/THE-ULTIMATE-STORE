@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volleyball Pads</title>
+    <link rel="stylesheet" href="cricket-2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search pads..." oninput="searchProducts()">
+        </div>
+    </header>
+    
+    <main>
+        <h1>Volleyball Pads</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="volleyball-ball.html"><button>Volleyball</button></a>
+                <a href="volleyball-net.html"><button>Nets</button></a>
+                <a href="volleyball-pads.html"><button>Pads</button></a>
+                <a href="volleyball-shoes.html"><button>Shoes</button></a>	
+            </div>
+
+            <div class="product">
+                <img src="Images/kneepad.jpg" alt="Basic Volleyball Knee Pads">
+                <h2>Basic Volleyball Knee Pads</h2>
+                <p>$25</p>
+                <button class="add-to-cart" data-name="Basic Volleyball Knee Pads" data-price="25">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/kneepad-2.jpg" alt="Advanced Volleyball Knee Pads">
+                <h2>Advanced Volleyball Knee Pads</h2>
+                <p>$35</p>
+                <button class="add-to-cart" data-name="Advanced Volleyball Knee Pads" data-price="35">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/kneepad-3.jpg" alt="Pro Volleyball Knee Pads">
+                <h2>Pro Volleyball Knee Pads</h2>
+                <p>$45</p>
+                <button class="add-to-cart" data-name="Pro Volleyball Knee Pads" data-price="45">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/kneepad-4.jpg" alt="Volleyball Elbow Pads">
+                <h2>Volleyball Elbow Pads</h2>
+                <p>$30</p>
+                <button class="add-to-cart" data-name="Volleyball Elbow Pads" data-price="30">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/kneepad-5.jpg" alt="Premium Volleyball Knee Pads">
+                <h2>Premium Volleyball Knee Pads</h2>
+                <p>$50</p>
+                <button class="add-to-cart" data-name="Premium Volleyball Knee Pads" data-price="50">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+    
+    <script>
+    function searchProducts() {
+        let query = document.getElementById('search').value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(product => {
+            let productNameElement = product.querySelector("h2"); 
+            let productName = productNameElement ? productNameElement.textContent.toLowerCase() : "";
+
+            if (productName.includes(query)) {
+                product.style.display = "block"; 
+            } else {
+                product.style.display = "none"; 
+            }
+        });
+    }
+
+    function addToCart(name, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let existingItem = cart.find(item => item.name === name);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${name} has been added to your cart!`);
+    }
+
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function () {
+                let name = this.getAttribute("data-name");
+                let price = parseFloat(this.getAttribute("data-price"));
+                addToCart(name, price);
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

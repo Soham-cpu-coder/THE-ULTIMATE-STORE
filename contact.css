@@ -1,0 +1,149 @@
+/* ✅ General Page Styling */
+body {
+    font-family: 'Poppins', sans-serif; /* Good-looking font */
+    background-color: #f4f4f4; /* Light Grey Background */
+    margin: 0;
+    padding: 0;
+}
+
+/* ✅ Header */
+header {
+    background-color: #006400; /* Same Green as Index Page */
+    color: white;
+    padding: 15px;
+    text-align: center;
+    font-size: 22px;
+    font-weight: bold;
+}
+
+/* ✅ Navigation Bar */
+nav ul {
+    list-style: none;
+    padding: 0;
+    text-align: center;
+    background: #004d00;
+    margin: 0;
+}
+
+nav ul li {
+    display: inline;
+    margin: 0 15px;
+}
+
+nav ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 16px;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+nav ul li a:hover {
+    color: #d4edda; /* Light Green Hover Effect */
+}
+
+/* ✅ Contact Form Styling */
+main {
+    width: 50%;
+    margin: 30px auto;
+    padding: 20px;
+    background: white;
+    border-radius: 10px;
+    box-shadow: 0px 5px 15px rgba(0, 100, 0, 0.2);
+    text-align: center;
+}
+
+h1 {
+    color: #006400;
+    font-size: 26px;
+}
+
+p {
+    font-size: 16px;
+    color: #333;
+}
+
+/* ✅ Form Fields */
+form {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+label {
+    font-size: 16px;
+    font-weight: bold;
+    color: #006400;
+    text-align: left;
+}
+
+input, textarea {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #a0c4a0;
+    border-radius: 5px;
+    font-size: 16px;
+    background-color: #f8f8f8;
+}
+
+textarea {
+    height: 120px;
+    resize: none;
+}
+
+/* ✅ Submit Button */
+button {
+    background: #006400;
+    color: white;
+    padding: 10px;
+    border: none;
+    font-size: 16px;
+    font-weight: bold;
+    cursor: pointer;
+    border-radius: 5px;
+    transition: 0.3s;
+}
+
+button:hover {
+    background: #004d00;
+}
+
+/* ✅ Response Message */
+#responseMessage {
+    font-weight: bold;
+    margin-top: 10px;
+}
+
+/* ✅ Social Media Links */
+.social-links {
+    margin-top: 20px;
+}
+
+.social-links p {
+    font-weight: bold;
+    font-size: 18px;
+    color: #006400;
+}
+
+/* ✅ Social Media Icons (Resized to Look Better) */
+.social-links a img {
+    width: 35px; /* Smaller Size */
+    height: 35px;
+    margin: 0 10px;
+    border-radius: 50%;
+    transition: 0.3s;
+}
+
+.social-links a img:hover {
+    transform: scale(1.1); /* Small Hover Effect */
+}
+
+/* ✅ Footer */
+footer {
+    text-align: center;
+    padding: 10px;
+    background: #006400;
+    color: white;
+    font-weight: bold;
+    margin-top: 20px;
+}

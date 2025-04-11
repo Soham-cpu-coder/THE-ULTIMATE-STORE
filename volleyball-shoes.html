@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Volleyball Equipment</title>
+    <link rel="stylesheet" href="cricket-2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search products..." oninput="searchProducts()">
+        </div>
+    </header>
+    
+    <main>
+        <h1>Volleyball Equipment</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="volleyball-ball.html"><button>Volleyball</button></a>
+                <a href="volleyball-net.html"><button>Nets</button></a>
+                <a href="volleyball-pads.html"><button>Pads</button></a>
+                <a href="volleyball-shoes.html"><button>Shoes</button></a>	
+            </div>
+
+            <div class="product">
+                <img src="Images/volleyball-shoes.jpg" alt="Volleyball Shoes 1">
+                <h2>Volleyball Shoes (Model 1)</h2>
+                <p>$60</p>
+                <button class="add-to-cart" data-name="Volleyball Shoes Model 1" data-price="60">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/volleyball-shoes-2.jpg" alt="Volleyball Shoes 2">
+                <h2>Volleyball Shoes (Model 2)</h2>
+                <p>$65</p>
+                <button class="add-to-cart" data-name="Volleyball Shoes Model 2" data-price="65">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/volleyball-shoes-3.jpg" alt="Volleyball Shoes 3">
+                <h2>Volleyball Shoes (Model 3)</h2>
+                <p>$70</p>
+                <button class="add-to-cart" data-name="Volleyball Shoes Model 3" data-price="70">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/volleyball-shoes-4.jpg" alt="Volleyball Shoes 4">
+                <h2>Volleyball Shoes (Model 4)</h2>
+                <p>$75</p>
+                <button class="add-to-cart" data-name="Volleyball Shoes Model 4" data-price="75">Add to Cart</button>
+            </div>
+            <div class="product">
+                <img src="Images/volleyball-shoes-5.jpg" alt="Volleyball Shoes 5">
+                <h2>Volleyball Shoes (Model 5)</h2>
+                <p>$80</p>
+                <button class="add-to-cart" data-name="Volleyball Shoes Model 5" data-price="80">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+    
+    <script>
+    function searchProducts() {
+        let query = document.getElementById('search').value.toLowerCase();
+        let products = document.querySelectorAll(".product");
+
+        products.forEach(product => {
+            let productNameElement = product.querySelector("h2"); // ✅ Get product name from <h2>
+            let productName = productNameElement ? productNameElement.textContent.toLowerCase() : "";
+
+            if (productName.includes(query)) {
+                product.style.display = "block"; // Show matching product
+            } else {
+                product.style.display = "none"; // Hide non-matching product
+            }
+        });
+    }
+
+    function addToCart(name, price) {
+        let cart = JSON.parse(localStorage.getItem('cart')) || [];
+        let existingItem = cart.find(item => item.name === name);
+
+        if (existingItem) {
+            existingItem.quantity += 1;
+        } else {
+            cart.push({ name, price, quantity: 1 });
+        }
+
+        localStorage.setItem('cart', JSON.stringify(cart));
+        alert(`${name} has been added to your cart!`);
+    }
+
+    // ✅ Attach event listeners to buttons
+    document.addEventListener("DOMContentLoaded", function () {
+        document.querySelectorAll(".add-to-cart").forEach(button => {
+            button.addEventListener("click", function () {
+                let name = this.getAttribute("data-name");
+                let price = parseFloat(this.getAttribute("data-price"));
+                addToCart(name, price);
+            });
+        });
+    });
+    </script>
+
+</body>
+</html>

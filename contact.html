@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link rel="stylesheet" href="contact.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <h1>Contact Us</h1>
+        <p>If you have any queries, please fill out the form below.</p>
+
+        <form id="contactForm">
+            <label for="name">Name:</label>
+            <input type="text" id="name" name="name">
+
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email">
+
+            <label for="subject">Subject:</label>
+            <input type="text" id="subject" name="subject">
+
+            <label for="message">Message:</label>
+            <textarea id="message" name="message"></textarea>
+
+            <button type="submit">Submit</button>
+        </form>
+
+        <p id="responseMessage"></p>
+
+        <div class="social-links">
+            <p>Contact us on:</p>
+            <a href="mailto:ojathar23computer@student.mes.ac.in" target="_blank">
+                <img src="Images/email.png" alt="Email">
+            </a>
+            <a href="https://wa.me/7900053843" target="_blank">
+                <img src="Images/whatsapp.png" alt="WhatsApp">
+            </a>
+            <a href="https://www.instagram.com/jathar.om" target="_blank">
+                <img src="Images/instagram.jpg" alt="Instagram">
+            </a>
+            <a href="https://www.facebook.com/Om Jathar" target="_blank">
+                <img src="Images/facebook.jpg" alt="Facebook">
+            </a>
+        </div>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+
+    <script>
+        document.getElementById("contactForm").addEventListener("submit", function(event) {
+            event.preventDefault();
+
+            let name = document.getElementById("name").value.trim();
+            let email = document.getElementById("email").value.trim();
+            let subject = document.getElementById("subject").value.trim();
+            let message = document.getElementById("message").value.trim();
+            let responseMessage = document.getElementById("responseMessage");
+
+            if (name === "" || email === "" || subject === "" || message === "") {
+                responseMessage.style.color = "red";
+                responseMessage.textContent = "All fields are required!";
+            } else {
+                responseMessage.style.color = "green";
+                responseMessage.textContent = "Form submitted successfully!";
+                document.getElementById("contactForm").reset();
+            }
+        });
+    </script>
+</body>
+</html>

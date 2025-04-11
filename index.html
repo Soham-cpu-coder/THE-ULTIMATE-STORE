@@ -1,0 +1,115 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sports Store</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- HEADER SECTION -->
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="cricket.html">Cricket</a></li>
+                <li><a href="football.html">Football</a></li>
+                <li><a href="basketball.html">Basketball</a></li>
+                <li><a href="volleyball.html">Volleyball</a></li>
+                <li><a href="swimming.html">Swimming</a></li>
+                <li><a href="hockey.html">Hockey</a></li>
+                <li><a href="cart.html">Cart</a></li>
+                <li><a href="login.html">Login</a></li>
+                <li><a href="contact.html">Contact Us</a></li>
+            </ul>
+        </nav>
+        <div class="search-bar">
+            <input type="text" id="search" placeholder="Search for sports products..." onkeyup="searchProducts()">
+            <button onclick="searchProducts()">Search</button>
+        </div>
+    </header>
+
+    <!-- HERO SECTION -->
+    <section class="hero">
+        <h1>Welcome to the Ultimate Sports Store</h1>
+        <p>Get the best sports equipment at unbeatable prices.</p>
+    </section>
+
+    <!-- CATEGORY DISPLAY SECTION (HORIZONTAL LAYOUT) -->
+    <main>
+        <h2 class="section-title">Shop by Category</h2>
+        <section class="category-container">
+            <!-- Cricket -->
+            <div class="category-card">
+                <a href="cricket.html">
+                    <img src="Images/cricket.jpg" alt="Cricket">
+                    <h2>Cricket</h2>
+                </a>
+            </div>
+
+            <!-- Football -->
+            <div class="category-card">
+                <a href="football.html">
+                    <img src="Images/football.jpg" alt="Football">
+                    <h2>Football</h2>
+                </a>
+            </div>
+
+            <!-- Basketball -->
+            <div class="category-card">
+                <a href="basketball.html">
+                    <img src="Images/basketball.jpg" alt="Basketball">
+                    <h2>Basketball</h2>
+                </a>
+            </div>
+
+            <!-- Volleyball -->
+            <div class="category-card">
+                <a href="volleyball.html">
+                    <img src="Images/volleyball.jpg" alt="Volleyball">
+                    <h2>Volleyball</h2>
+                </a>
+            </div>
+
+            <!-- Swimming -->
+            <div class="category-card">
+                <a href="swimming.html">
+                    <img src="Images/swimming.jpg" alt="Swimming">
+                    <h2>Swimming</h2>
+                </a>
+            </div>
+
+            <!-- Hockey -->
+            <div class="category-card">
+                <a href="hockey.html">
+                    <img src="Images/hockey.jpg" alt="Hockey">
+                    <h2>Hockey</h2>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER SECTION -->
+    <footer>
+        <p>&copy; 2025 Sports Store. All rights reserved.</p>
+    </footer>
+
+    <!-- JAVASCRIPT -->
+    <script>
+        function searchProducts() {
+            let query = document.getElementById('search').value.toLowerCase();
+            let categories = document.querySelectorAll(".category-card");
+
+            categories.forEach(category => {
+                let categoryName = category.innerText.toLowerCase();
+                if (categoryName.includes(query)) {
+                    category.style.display = "block"; // Show matching category
+                } else {
+                    category.style.display = "none"; // Hide non-matching category
+                }
+            });
+        }
+    </script>
+</body>
+</html>

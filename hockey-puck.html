@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Hockey</title>
+    <link rel="stylesheet" href="cricket-2.css">
+</head>
+<body>
+    <header>
+        <div class="logo">Sports Store</div>
+        <nav>
+            <ul>
+                <li><a href="index.html">Home</a></li>
+                <li><a href="hockey.html">Hockey</a></li>
+                <li><a href="cart.html">Cart</a></li>
+            </ul>
+        </nav>
+        <!-- ✅ Added Search Bar -->
+        <div class="search-container">
+            <input type="text" id="search" placeholder="Search products..." oninput="searchProducts()">
+        </div>
+    </header>
+    
+    <main>
+        <h1>Hockey</h1>
+        <section class="product-list">
+            <div class="categories">
+                <a href="hockey-stick.html"><button>Hockey Stick</button></a>
+                <a href="hockey-puck.html"><button>Puck</button></a>
+                <a href="hockey-gloves.html"><button>Hockey Gloves</button></a>
+                <a href="hockey-helmet.html"><button>Helmets</button></a>    
+            </div>
+
+            <div class="product">
+                <img src="Images/puck.webp" alt="Hockey Puck Model 1">
+                <h2>Hockey Puck (Model 1)</h2>
+                <p>$10</p>
+                <button class="add-to-cart" data-name="Hockey Puck (Model 1)" data-price="10">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/puck-2.webp" alt="Hockey Puck Model 2">
+                <h2>Hockey Puck (Model 2)</h2>
+                <p>$12</p>
+                <button class="add-to-cart" data-name="Hockey Puck (Model 2)" data-price="12">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/puck-3.webp" alt="Hockey Puck Model 3">
+                <h2>Hockey Puck (Model 3)</h2>
+                <p>$15</p>
+                <button class="add-to-cart" data-name="Hockey Puck (Model 3)" data-price="15">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/puck-4.webp" alt="Hockey Puck Model 4">
+                <h2>Hockey Puck (Model 4)</h2>
+                <p>$18</p>
+                <button class="add-to-cart" data-name="Hockey Puck (Model 4)" data-price="18">Add to Cart</button>
+            </div>
+
+            <div class="product">
+                <img src="Images/puck-5.webp" alt="Hockey Puck Model 5">
+                <h2>Hockey Puck (Model 5)</h2>
+                <p>$20</p>
+                <button class="add-to-cart" data-name="Hockey Puck (Model 5)" data-price="20">Add to Cart</button>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <p>&copy; 2025 Sports Store</p>
+    </footer>
+
+    <script>
+        function searchProducts() {
+            let query = document.getElementById('search').value.toLowerCase();
+            let products = document.querySelectorAll(".product");
+
+            products.forEach(product => {
+                let productName = product.querySelector("h2").textContent.toLowerCase(); // ✅ Searching in <h2>
+                if (productName.includes(query)) {
+                    product.style.display = "block"; // Show matching product
+                } else {
+                    product.style.display = "none"; // Hide non-matching product
+                }
+            });
+        }
+
+        function addToCart(name, price) {
+            let cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+            let existingItem = cart.find(item => item.name === name);
+            if (existingItem) {
+                existingItem.quantity += 1;
+            } else {
+                cart.push({ name, price, quantity: 1 });
+            }
+
+            localStorage.setItem('cart', JSON.stringify(cart));
+            alert(name + " added to cart!");
+        }
+
+        document.addEventListener("DOMContentLoaded", function () {
+            document.querySelectorAll(".add-to-cart").forEach(button => {
+                button.addEventListener("click", function () {
+                    let product = this.closest(".product");
+                    let name = product.querySelector("h2").textContent; // ✅ Now gets name from <h2>
+                    let price = parseFloat(this.getAttribute("data-price"));
+                    addToCart(name, price);
+                });
+            });
+        });
+    </script>
+</body>
+</html>

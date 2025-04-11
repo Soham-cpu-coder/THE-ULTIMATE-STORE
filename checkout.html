@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Checkout</title>
+    <link rel="stylesheet" href="checkout.css">
+</head>
+<body>
+    <header>
+        <h1>Checkout</h1>
+    </header>
+    <main>
+        <div class="checkout-container">
+            <div class="steps">
+                <button class="step" onclick="showStep(1)">Cart Review</button>
+                <button class="step" onclick="showStep(2)">Shipping Details</button>
+                <button class="step" onclick="showStep(3)">Payment</button>
+                <button class="step" onclick="showStep(4)">Confirmation</button>
+            </div>
+            
+            <!-- Cart Review Section -->
+            <div class="step-content" id="step-1">
+                <h2>Cart Review</h2>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Price</th>
+                            <th>Quantity</th>
+                            <th>Total</th>
+                        </tr>
+                    </thead>
+                    <tbody id="cart-items"></tbody>
+                </table>
+                <h3>Total: $<span id="cart-total">0.00</span></h3>
+                <button onclick="showStep(2)">Next</button>
+                <button onclick="goHome()">Return to Home</button>
+            </div>
+            
+            <!-- Shipping Details Section -->
+            <div class="step-content" id="step-2" style="display: none;">
+                <h2>Shipping Details</h2>
+                <form id="shipping-form">
+                    <input type="text" id="name" placeholder="Full Name">
+                    <input type="text" id="address" placeholder="Address">
+                    <input type="text" id="city" placeholder="City">
+                    <input type="text" id="zip" placeholder="Zip Code">
+                    <button type="button" onclick="validateShipping()">Next</button>
+                    <button type="button" onclick="goHome()">Return to Home</button>
+                </form>
+            </div>
+            
+            <!-- Payment Section -->
+            <div class="step-content" id="step-3" style="display: none;">
+                <h2>Payment</h2>
+                <form id="payment-form">
+                    <input type="text" id="card-number" placeholder="Card Number">
+                    <input type="text" id="expiry" placeholder="MM/YY">
+                    <input type="text" id="cvv" placeholder="CVV">
+                    <button type="button" onclick="validatePayment()">Submit Payment</button>
+                    <button type="button" onclick="goHome()">Return to Home</button>
+                </form>
+            </div>
+            
+            <!-- Order Confirmation Section -->
+            <div class="step-content" id="step-4" style="display: none;">
+                <h2>Order Confirmation</h2>
+                <p id="confirmation-message">Please complete all steps before confirming your order.</p>
+                <button onclick="confirmOrder()">Confirm Order</button>
+                <button onclick="goHome()">Return to Home</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function goHome() {
+            window.location.href = "index.html"; // Redirects to home page
+        }
+    </script>
+
+    <script src="checkout.js"></script>
+</body>
+</html>
